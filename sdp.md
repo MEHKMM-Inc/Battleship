@@ -16,25 +16,25 @@
   * Set up README
   * Define Project roles
 
-* Sprint 2
+* Sprint 2 (Jan 29-Feb 11)
   * Spit out basic UI
     * X/O grid that takes in hit and miss inputs
   * Research Game rules that will need to be followed by System
   * Research functions that will enhance
 
-* Sprint 3
+* Sprint 3 (Feb 12 - Feb 25)
   * Continue UI improvement
     * starting menu
     * Asks if ships are sunk or not and updates grid if so
   * Start implementing game rules
   * Start building algorithm that gives best shot at hitting ships
 
-* Sprint 4
+* Sprint 4 (Feb 26  - Mar 10)
   * MVP will be produced
     * Program will spin up and guid a player on they should attack without breaking any of the game rules
 
-* Sprint 5
+* Sprint 5 (Mar 11 - Mar 24)
   * Improvements / more
 
-* Sprint 6
+* Sprint 6 (Mar 25 - Apr 7)
   * Improvements / more
