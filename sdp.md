@@ -34,7 +34,7 @@
     * Program will spin up and guid a player on they should attack without breaking any of the game rules
 
 * Sprint 5
-  * Improvements
+  * Improvements / more
 
 * Sprint 6
-  * Improvements
+  * Improvements / more
