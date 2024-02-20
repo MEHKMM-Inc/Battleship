@@ -29,6 +29,12 @@ The website will be a standard html, css, jvs file containing all UI information
 The java file will preform all calculations necessary for finding the next best move and
 will operate at a timely manner
 
-### We will create a jquery server that allows the website and the program to communicate
+### We will create an Apache Tomcat server that allows the html website and the java program to communicate
 
-The jquery server will exist locally on the machine of the user
+The data flow will be as follows:
+- The Tomcat server will be started on the users local machine
+- Once the server is running, the html webpage will be loaded and displayed to the user
+- User actions on the html webpage will be sent to the server by JQuery
+- The server will process the recieved data using the java program and servlets
+- Any data to be sent back will be recieved by JQuery and then displayed on the html webpage
+- To end the websites runtime, stop the Tomcat server
