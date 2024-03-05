@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Battleship</title>
+    <link rel="stylesheet" href="Battleship.css">
+    <script src="./scripts/jquery.js"></script>
+    <script src="./scripts/TileFunction.js"></script>
+</head>
+<body>
+<div class="header"> 
+    <h1>Battleship</h1>
+    <a id="testAPI" href="./api">Try /Api</a>
+</div>
+<div class="wrapper">
+    <div class="side"></div>
+    <div class="top" >1</div>
+    <div class="top" >2</div>
+    <div class="top" >3</div>
+    <div class="top" >4</div>
+    <div class="top" >5</div>
+    <div class="top" >6</div>
+    <div class="top" >7</div>
+    <div class="top" >8</div>
+    <div class="top" >9</div>
+    <div class="top" >10</div>
+    <div class="side">A</div>
+    <div class="grid" id="A1" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)"></div>
+    <div class="grid" id="B1"></div>
+    <div class="grid" id="C1"></div>
+    <div class="grid" id="D1"></div>
+    <div class="grid" id="E1"></div>
+    <div class="grid" id="F1"></div>
+    <div class="grid" id="G1"></div>
+    <div class="grid" id="H1"></div>
+    <div class="grid" id="I1"></div>
+    <div class="grid" id="J1"></div>
+    <div class="side">B</div>
+    <div class="grid" id="A2"></div>
+    <div class="grid" id="B2"></div>
+    <div class="grid" id="C2"></div>
+    <div class="grid" id="D2"></div>
+    <div class="grid" id="E2"></div>
+    <div class="grid" id="F2"></div>
+    <div class="grid" id="G2"></div>
+    <div class="grid" id="H2"></div>
+    <div class="grid" id="I2"></div>
+    <div class="grid" id="J2"></div>
+    <div class="side">C</div>
+    <div class="grid" id="A3"></div>
+    <div class="grid" id="B3"></div>
+    <div class="grid" id="C3"></div>
+    <div class="grid" id="D3"></div>
+    <div class="grid" id="E3"></div>
+    <div class="grid" id="F3"></div>
+    <div class="grid" id="G3"></div>
+    <div class="grid" id="H3"></div>
+    <div class="grid" id="I3"></div>
+    <div class="grid" id="J3"></div>
+    <div class="side">D</div>
+    <div class="grid" id="A4"></div>
+    <div class="grid" id="B4"></div>
+    <div class="grid" id="C4"></div>
+    <div class="grid" id="D4"></div>
+    <div class="grid" id="E4"></div>
+    <div class="grid" id="F4"></div>
+    <div class="grid" id="G4"></div>
+    <div class="grid" id="H4"></div>
+    <div class="grid" id="I4"></div>
+    <div class="grid" id="J4"></div>
+    <div class="side">E</div>
+    <div class="grid" id="A5"></div>
+    <div class="grid" id="B5"></div>
+    <div class="grid" id="C5"></div>
+    <div class="grid" id="D5"></div>
+    <div class="grid" id="E5"></div>
+    <div class="grid" id="F5"></div>
+    <div class="grid" id="G5"></div>
+    <div class="grid" id="H5"></div>
+    <div class="grid" id="I5"></div>
+    <div class="grid" id="J5"></div>
+    <div class="side">F</div>
+    <div class="grid" id="A6"></div>
+    <div class="grid" id="B6"></div>
+    <div class="grid" id="C6"></div>
+    <div class="grid" id="D6"></div>
+    <div class="grid" id="E6"></div>
+    <div class="grid" id="F6"></div>
+    <div class="grid" id="G6"></div>
+    <div class="grid" id="H6"></div>
+    <div class="grid" id="I6"></div>
+    <div class="grid" id="J6"></div>
+    <div class="side">G</div>
+    <div class="grid" id="A7"></div>
+    <div class="grid" id="B7"></div>
+    <div class="grid" id="C7"></div>
+    <div class="grid" id="D7"></div>
+    <div class="grid" id="E7"></div>
+    <div class="grid" id="F7"></div>
+    <div class="grid" id="G7"></div>
+    <div class="grid" id="H7"></div>
+    <div class="grid" id="I7"></div>
+    <div class="grid" id="J7"></div>
+    <div class="side">H</div>
+    <div class="grid" id="A8"></div>
+    <div class="grid" id="B8"></div>
+    <div class="grid" id="C8"></div>
+    <div class="grid" id="D8"></div>
+    <div class="grid" id="E8"></div>
+    <div class="grid" id="F8"></div>
+    <div class="grid" id="G8"></div>
+    <div class="grid" id="H8"></div>
+    <div class="grid" id="I8"></div>
+    <div class="grid" id="J8"></div>
+    <div class="side">I</div>
+    <div class="grid" id="A9"></div>
+    <div class="grid" id="B9"></div>
+    <div class="grid" id="C9"></div>
+    <div class="grid" id="D9"></div>
+    <div class="grid" id="E9"></div>
+    <div class="grid" id="F9"></div>
+    <div class="grid" id="G9"></div>
+    <div class="grid" id="H9"></div>
+    <div class="grid" id="I9"></div>
+    <div class="grid" id="J9"></div>
+    <div class="side">J</div>
+    <div class="grid" id="A10"></div>
+    <div class="grid" id="B10"></div>
+    <div class="grid" id="C10"></div>
+    <div class="grid" id="D10"></div>
+    <div class="grid" id="E10"></div>
+    <div class="grid" id="F10"></div>
+    <div class="grid" id="G10"></div>
+    <div class="grid" id="H10"></div>
+    <div class="grid" id="I10"></div>
+    <div class="grid" id="J10"></div>
+</div>
+
+<div class="dialog" id="select">
+    <form method="post" id="get_user_action" action="">
+        <h2 id="select_header">Tile Name</h2>
+        <button type="submit" class="action_button" id="miss_submit">Miss</button>
+        <button type="submit" class="action_button" id="hit_submit">Hit</button>
+        <button type="submit" class="action_button" id="hit_and_sunk_submit">Hit & Sunk</button>
+        <button type="submit" id="cancel_submit">Cancel</button>
+    </form>
+</div>
+</body>
+</html>
