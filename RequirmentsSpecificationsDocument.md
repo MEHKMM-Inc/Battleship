@@ -22,3 +22,9 @@ squares, and the board should update accordingly.
 
 * The update of the board should happen automatically without any additional input from the user
 requesting it to be updated
+
+
+## TODO:
+* Add how it will suggest
+* add how the server with connect the be and fe
+* how marcuses function works
