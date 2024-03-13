@@ -28,9 +28,9 @@ requesting it to be updated
 * Add how it will suggest
 * how marcuses function works
 ### Server Connection
-- JQuery on the users local machine uses an Ajax call to call the server and pass any data
-- On the server, the servlet API receives the data and stores it in local variables
-- The servlet calls the java algorithm and gets its return value
-- The servlet will then convert the returnred data to a JSON and return in to the client
+- JQuery on the users local machine uses an Ajax function to call the server and pass any data to it
+- On the server, the servlet API receives the data and stores it in a local variable(s)
+- The servlet calls the java algorithm within the server and gets its returned value (if any)
+- The servlet will then convert the returned data to JSON and return in to the client
 - JQuery on the users local machine receives the data and parses it from JSON.
 - Data is now usable within the javascript of the client
