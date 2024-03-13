@@ -34,7 +34,8 @@ will operate at a timely manner
 The data flow will be as follows:
 - The Tomcat server will be started on the users local machine
 - Once the server is running, the html webpage will be loaded and displayed to the user
-- User actions on the html webpage will be sent to the server by JQuery
-- The server will process the recieved data using the java program and servlets
-- Any data to be sent back will be recieved by JQuery and then displayed on the html webpage
+- User miss, hit, and hit & sunk actions will be read by JQuery and sent to the servlet on the tomcat server
+- The server will process the recieved data using the java program
+- The servlet will then convert the output data to a JSON
+- Any data to be sent back will be recieved by JQuery, parse the data from a JSON, and then display it on the html webpage
 - To end the websites runtime, stop the Tomcat server
