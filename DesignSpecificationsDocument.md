@@ -17,3 +17,7 @@ will operate at a timely manner
 - The server will process the recieved data using the java program
 - The servlet will convert the output data to a JSON
 - Any data to be sent back will be recieved by JQuery, parsed from a JSON, and then displayed on the html webpage
+
+### Swimlane Diagram
+
+![Diagram](./images/DesignDiagram.png)
