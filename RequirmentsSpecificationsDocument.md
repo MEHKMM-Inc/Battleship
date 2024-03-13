@@ -34,4 +34,4 @@ requesting it to be updated
 - The servlet calls the java algorithm within the server and gets its returned value
 - The servlet will then convert the returned data to JSON and return it to the client localhost
 - JQuery on the users local machine receives the data and parses it from JSON
-- FE percentage disaply is updated by javascript based on the received data
+- FE percentage display is updated by javascript based on the received data
