@@ -34,6 +34,7 @@
   * Connecting BE and FE to run together
 
 * Sprint 5 (March 11 - Mar 24)
+  * (March 14) Requirements and Design documents finallized
   * MVP will be produced
     * Program will spin up and guid a player on they should attack without breaking any of the game rules
 
