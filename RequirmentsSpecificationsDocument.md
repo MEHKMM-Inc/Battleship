@@ -28,9 +28,10 @@ requesting it to be updated
 * Add how it will suggest
 * how marcuses function works
 ### Server Connection
-- JQuery on the users local machine uses an Ajax function to call the server and pass any data to it
-- On the server, the servlet API receives the data and stores it in a local variable(s)
-- The servlet calls the java algorithm within the server and gets its returned value (if any)
-- The servlet will then convert the returned data to JSON and return in to the client
-- JQuery on the users local machine receives the data and parses it from JSON.
-- Data is now usable within the javascript of the client
+- User activates a button on the FE of the project
+- JQuery on the users local machine uses an Ajax function to call the server and passes the data associated with the button to it
+- On the server, the servlet receives the data and stores it in a local variable(s) depending on the button pressed
+- The servlet calls the java algorithm within the server and gets its returned value
+- The servlet will then convert the returned data to JSON and return it to the client localhost
+- JQuery on the users local machine receives the data and parses it from JSON
+- FE percentage disaply is updated by javascript based on the received data
