@@ -1,3 +1,7 @@
+body{
+    background: url("img/battleshipBackround.jpeg");
+}
+
 .header{
     text-align: center;
 }
@@ -5,33 +9,39 @@
 .wrapper {
     margin: auto auto auto auto;
     display: grid;
-    border: 2px solid black;
-    background-color: #232d31;
+
     color: white;
     text-decoration: solid;
-    width: 100%;
-    height: 100%;
+    width: 75%;
+    height: 50%;
     grid-template-columns: repeat(11, 1fr);
 }
 .grid {
-    aspect-ratio: 1/1;
     display: flex;
     align-items: center;
     padding: 5%;
-    border:2px solid black;
-    background-color: #52bee9;
+    border-bottom:2px solid white;
+    border-top:2px solid white;
+    border-left:2px solid white ;
+    border-right:2px solid white ;
     text-align: center;
+    width: 88%;
+    height: 55px;
 }
 
 .top {
     padding: 10px;
-    border-bottom:2px solid black;
     text-align: center;
+    color: white;
+    margin-bottom: -10px;
 }
 
 .side {
     padding: 10px;
     text-align: center;
+    color: white;
+    margin-right: -100px;
+    margin-top: 14px;
 }
 
 .dialog {
@@ -49,11 +59,22 @@
 }
 
 .action_button {
-    background-color: green;
     border-radius: 25px;
     color: white;
     padding: 5%;
     align-items: center;
+}
+
+#miss_submit {
+    background-color: red;
+}
+
+#hit_submit{
+    background-color: green;
+}
+
+#hit_and_sunk_submit{
+    background-color: darkblue;
 }
 
 #get_user_action {
