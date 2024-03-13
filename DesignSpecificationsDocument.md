@@ -1,23 +1,3 @@
-# Requirement Specifications Document
-
-### The user shall be able to view a battleship grid
-
-A 10 x 10 battleship grid must be viewable and interactable to the user in which the user
-can click on each part of the grid seperately
-
-### The user shall be guided where to play next
-
-A combination of colors and text values must be present in each grid square informing the user
-on where the next best course of action shall be taken
-
-### The user shall be able to update the gameboard
-
-The user must be able to modify the state of the gameboard through clicking the individual grid
-squares, and the board should update accordingly.
-
-The update of the board should happen automatically without any additional input from the user
-requesting it to be updated
-
 # Design Specifications Document
 
 ### We will create an html website that handles user UI
