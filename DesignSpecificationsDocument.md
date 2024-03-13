@@ -20,4 +20,4 @@ will operate at a timely manner
 
 ### Swimlane Diagram
 
-![Diagram](./images/DesignDiagram.png)
+![Diagram](./DesignDiagram.png)
