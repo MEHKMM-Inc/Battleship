@@ -31,11 +31,9 @@ will operate at a timely manner
 
 ### We will create an Apache Tomcat server that allows the html website and the java program to communicate
 
-The data flow will be as follows:
 - The Tomcat server will be started on the users local machine
-- Once the server is running, the html webpage will be loaded and displayed to the user
+- The server will display the html webpage to the user
 - User miss, hit, and hit & sunk actions will be read by JQuery and sent to the servlet on the tomcat server
 - The server will process the recieved data using the java program
-- The servlet will then convert the output data to a JSON
-- Any data to be sent back will be recieved by JQuery, parse the data from a JSON, and then display it on the html webpage
-- To end the websites runtime, stop the Tomcat server
+- The servlet will convert the output data to a JSON
+- Any data to be sent back will be recieved by JQuery, parsed from a JSON, and then displayed on the html webpage
