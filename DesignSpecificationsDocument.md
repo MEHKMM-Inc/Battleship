@@ -18,7 +18,7 @@ will operate at a timely manner
 		* The calculator records and updates number miss/hit/sunk and keeps a 2d status array corresponding to the game board.
 		* If the guess sunk a ship, the calculator will attempt to narrow down the exact position of the sunk ship and update the status of those cells.
 
-		![Update Game State Diagram](../Images/updateGameState.png)
+		![Update Game State Diagram](/Images/updateGameState.png)
 
 	* M1.c: The ProbabilityCalculator will calculate the probabilities of landing a hit on each unguessed cell and return them as an array
 
