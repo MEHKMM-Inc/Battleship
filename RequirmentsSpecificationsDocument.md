@@ -28,3 +28,8 @@ requesting it to be updated
 * Add how it will suggest
 * add how the server with connect the be and fe
 * how marcuses function works
+
+* Requirement M1: (REPLACE WITH ACTUAL NUMBER IN FINAL DOCUMENT) 
+	* M1.a: The ProbabilityCalculator class will take in info from the user's last guess
+	* M1.b: The ProbabilityCalculator will update the status of the game state to the best of its ability given current info
+	* M1.c: The ProbabilityCalculator will calculate the probabilities of landing a hit on each unguessed cell and return them as an array
