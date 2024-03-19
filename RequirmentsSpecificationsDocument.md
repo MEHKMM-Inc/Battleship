@@ -38,10 +38,3 @@ squares, and the board should update accordingly.
 * R4a. The board will reset when the page is refreshed
 
 ### R5. The system shall use a server to connect back end javascript to the html
-- User activates a button on the FE of the project
-- JQuery on the users local machine uses an Ajax function to call the server and passes the data associated with the button to it
-- On the server, the servlet receives the data and stores it in a local variable(s) depending on the button pressed
-- The servlet calls the java algorithm within the server and gets its returned value
-- The servlet will then convert the returned data to JSON and return it to the client localhost
-- JQuery on the users local machine receives the data and parses it from JSON
-- FE percentage display is updated by javascript based on the received data
