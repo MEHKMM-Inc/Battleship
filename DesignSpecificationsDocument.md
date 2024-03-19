@@ -3,8 +3,7 @@
 ### R1. The user shall be able to view a battleship grid
 
 * The website will be a standard html, css, jvs file containing all UI information
-
-- (include mockup of front end here)
+	- (include mockup of front end here)
 
 ### R2. The user shall be able to update the game board
 
