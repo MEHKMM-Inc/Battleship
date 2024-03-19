@@ -23,8 +23,11 @@ squares, and the board should update accordingly.
 * The update of the board should happen automatically without any additional input from the user
 requesting it to be updated
 
+### Each space in the game board shall show a percentage
 
-## TODO:
-* Add how it will suggest
-* add how the server with connect the be and fe
-* how marcuses function works
+* the players will then use those percentages to make their next move
+
+### The board shall restart after a page reset
+
+* to keep our design simple, we will not have a restart button instead to
+  start a new game you must refresh the page
