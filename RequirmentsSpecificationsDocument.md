@@ -15,6 +15,11 @@ on where the next best course of action shall be taken
 
 * After each attack an X or O will be added to represent hit or miss
 
+* Requirement M1: (REPLACE WITH ACTUAL NUMBER IN FINAL DOCUMENT)
+	* M1.a: The ProbabilityCalculator class will take in info from the user's last guess
+	* M1.b: The ProbabilityCalculator will update the status of the game state to the best of its ability given current info
+	* M1.c: The ProbabilityCalculator will calculate the probabilities of landing a hit on each unguessed cell and return them as an array
+
 ### The user shall be able to update the game board
 
 * The user must be able to modify the state of the game board through clicking the individual grid
@@ -32,12 +37,7 @@ requesting it to be updated
 * to keep our design simple, we will not have a restart button instead to
   start a new game you must refresh the page
 
-* Requirement M1: (REPLACE WITH ACTUAL NUMBER IN FINAL DOCUMENT) 
-	* M1.a: The ProbabilityCalculator class will take in info from the user's last guess
-	* M1.b: The ProbabilityCalculator will update the status of the game state to the best of its ability given current info
-	* M1.c: The ProbabilityCalculator will calculate the probabilities of landing a hit on each unguessed cell and return them as an array
-
-### Server Connection
+### The system shall use a server to connect back end javascript to the html
 - User activates a button on the FE of the project
 - JQuery on the users local machine uses an Ajax function to call the server and passes the data associated with the button to it
 - On the server, the servlet receives the data and stores it in a local variable(s) depending on the button pressed
