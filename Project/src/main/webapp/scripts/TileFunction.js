@@ -5,6 +5,24 @@
 var currentSquare = null
 
 $(document).ready(function(){
+
+    function setPercentage(cellProbabilities) {
+        var gridElements = document.getElementsByClassName("grid");
+
+        for (let i = 0; i < cellProbabilities.length; i++) {
+            for (let j = 0; j < cellProbabilities.length; j++) {
+                var textnode = document.createTextNode(cellProbabilities[i][j], "%");
+
+                var gridElement = gridElements[j + (i*10)];
+                
+                if (gridElement.firstChild) {
+                    gridElement.firstChild.nodeValue = textnode.nodeValue;
+                } else {
+                    gridElement.appendChild(textnode);
+                }
+            }
+        }
+    }
     // Miss button on the dialog pop up
     // Posts to the servlet that the user has missed
     $("#miss_submit").click(function(button){
@@ -13,7 +31,8 @@ $(document).ready(function(){
         $.ajax({
             url : "./api",
             data : {
-                hit: "false"
+                hit: "false",
+                sunk: "false"
             },
             type : "get",
             success : function(response) {
@@ -25,6 +44,7 @@ $(document).ready(function(){
                     }
                 }
                 var select = document.getElementById("select");
+                setPercentage(cellProbabilities);
                 $(select).css("visibility", "hidden");
                 
             },
@@ -54,6 +74,7 @@ $(document).ready(function(){
                     }
                 }
                 var select = document.getElementById("select");
+                setPercentage(cellProbabilities);
                 $(select).css("visibility", "hidden");
             },
             error: function() {
@@ -82,6 +103,7 @@ $(document).ready(function(){
                     }
                 }
                 var select = document.getElementById("select");
+                setPercentage(cellProbabilities);
                 $(select).css("visibility", "hidden");
             },
             error: function() {
