@@ -24,7 +24,7 @@
     <div class="top" >9</div>
     <div class="top" >10</div>
     <div class="side">A</div>
-    <div class="grid" id="A1" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)"></div>
+    <div class="grid" id="A1"></div>
     <div class="grid" id="B1"></div>
     <div class="grid" id="C1"></div>
     <div class="grid" id="D1"></div>
@@ -142,6 +142,17 @@
         <button type="submit" class="action_button" id="hit_submit">Hit</button>
         <button type="submit" class="action_button" id="hit_and_sunk_submit">Hit & Sunk</button>
         <button type="submit" id="cancel_submit">Cancel</button>
+    </form>
+</div>
+<div class="dialog_bigger" id="shipType">
+    <form method="post" id="get_ship_sunk" action="">
+        <h2 id="select_header">Ship Type</h2>
+        <button type="submit" class="sunk_button" id="cruiser">Cruiser</button>
+        <button type="submit" class="sunk_button" id="submarine">Submarine</button>
+        <button type="submit" class="sunk_button" id="destroyer">Destroyer</button>
+        <button type="submit" class="sunk_button" id="battleship">Battleship</button>
+        <button type="submit" class="sunk_button" id="aircraft_carrier">Aircraft Carrier</button>
+        <button type="submit" id="cancel_sunk_submit">Cancel</button>
     </form>
 </div>
 </body>
