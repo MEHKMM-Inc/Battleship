@@ -30,11 +30,13 @@
   * Start building algorithm that gives best shot at hitting ships
 
 * Sprint 4 (Feb 26 - Mar 10)
-  * MVP will be produced
-    * Program will spin up and guid a player on they should attack without breaking any of the game rules
+  *  (Mar 1) Requirements and Design Specification will both be due
+  * Connecting BE and FE to run together
 
 * Sprint 5 (March 11 - Mar 24)
-  * Improvements
+  * (March 14) Requirements and Design documents finallized
+  * MVP will be produced
+    * Program will spin up and guid a player on they should attack without breaking any of the game rules
 
 * Sprint 6 (Mar 25 - Apr 7)
   * Improvements

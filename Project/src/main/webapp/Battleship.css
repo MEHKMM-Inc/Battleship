@@ -1,0 +1,103 @@
+body{
+    background: url("img/battleshipBackround.jpeg");
+}
+
+.header{
+    text-align: center;
+}
+
+.wrapper {
+    margin: auto auto auto auto;
+    display: grid;
+
+    color: white;
+    text-decoration: solid;
+    width: 75%;
+    height: 50%;
+    grid-template-columns: repeat(11, 1fr);
+}
+.grid {
+    display: flex;
+    align-items: center;
+    padding: 5%;
+    border-bottom:2px solid white;
+    border-top:2px solid white;
+    border-left:2px solid white ;
+    border-right:2px solid white ;
+    text-align: center;
+    width: 88%;
+    height: 55px;
+}
+
+.top {
+    padding: 10px;
+    text-align: center;
+    color: white;
+    margin-bottom: -10px;
+}
+
+.side {
+    padding: 10px;
+    text-align: center;
+    color: white;
+    margin-right: -100px;
+    margin-top: 14px;
+}
+
+.dialog, .dialog_bigger {
+    visibility: hidden;
+    width: 180px;
+    height: 225px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    border-radius: 25px;
+    background-color: white;
+    border: 2px solid black;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+}
+
+.dialog_bigger {
+    width: 180px;
+    height: 290px;
+}
+
+.action_button, .sunk_button {
+    border-radius: 25px;
+    color: white;
+    padding: 5%;
+    align-items: center;
+}
+
+.sunk_button {
+    background-color: blue;
+}
+
+#miss_submit {
+    background-color: red;
+}
+
+#hit_submit{
+    background-color: green;
+}
+
+#hit_and_sunk_submit{
+    background-color: darkblue;
+}
+
+#get_user_action, #get_ship_sunk {
+    display: grid;
+    text-align: center;
+    padding: 5%;
+    grid-template-columns: repeat(1, 1);
+    justify-content: space-evenly;
+    gap: 5px;
+}
+
+#cancel_submit, #cancel_sunk_submit {
+    background-color: grey;
+    border-radius: 25px;
+    color: black;
+    padding: 5%;
+}
