@@ -21,7 +21,7 @@
 	- If the guess sunk a ship, the calculator will attempt to narrow down the exact position of the sunk ship and update the status of those cells.
 
 ### Board State Update Diagram
-![Update Game State Diagram](/Images/updateGameState.png)
+![Update Game State Diagram](/DocumentationAndImages/Images/updateGameState.png)
 
 * R3c: The ProbabilityCalculator will calculate the probabilities of landing a hit on each unguessed cell and return them as an array
   	- (describe how this is implemented)
@@ -47,4 +47,4 @@
 
 ### Server Swimlane Diagram
 
-![Server Diagram](../Images/DesignDiagram.png)
+![Server Diagram](Images/DesignDiagram.png)
