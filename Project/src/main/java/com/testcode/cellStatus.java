@@ -1,4 +1,4 @@
-package com.testcode;
+package Java;
 
 // designates status of a cell in the grid
 public enum cellStatus 
