@@ -47,4 +47,4 @@
 
 ### Server Swimlane Diagram
 
-![Server Diagram](./DesignDiagram.png)
+![Server Diagram](../Images/DesignDiagram.png)
