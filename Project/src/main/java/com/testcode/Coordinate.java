@@ -1,4 +1,4 @@
-package Java;
+package Project.src.main.java.com.testcode;
 
 public class Coordinate 
 {

@@ -1,4 +1,4 @@
-package Java;
+package Project.src.main.java.com.testcode;
 
 // designates the type of ship just sunk
 // USE THIS TO PASS TO ProbabilityCalculator.calculate
