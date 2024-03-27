@@ -19,16 +19,17 @@ public class testAPI extends HttpServlet {
 
       ProbabilityCalculator Calculator = new ProbabilityCalculator();
       Boolean hit = Boolean.parseBoolean(request.getParameter("hit"));
-      Boolean sunk = Boolean.parseBoolean(request.getParameter("sunk"));
+      int x = Integer.parseInt(request.getParameter("x"));
+      int y = Integer.parseInt(request.getParameter("y"));
+      int ship = Integer.parseInt(request.getParameter("shipType"));
 
-      double testCalculation[][] = Calculator.calculate(hit, 0, 0, shipSunk.none);
-      JSONArray mJSONArray = new JSONArray(Arrays.asList(testCalculation));
+      int calculate = Calculator.calculate(hit, x, y, shipSunk.values()[ship]);
+      JSONArray mJSONArray = new JSONArray(Arrays.asList(Calculator.getProbabilityArray()));
 
       response.setContentType("text/html");
 
       PrintWriter out = response.getWriter();
       out.println(mJSONArray.toString());
-      //out.println("./api works. Try ./api/getMessage");      
    }
 
    public void doPost(HttpServletRequest request, HttpServletResponse response)
