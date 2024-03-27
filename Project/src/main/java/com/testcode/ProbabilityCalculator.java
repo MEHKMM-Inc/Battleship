@@ -1,4 +1,4 @@
-package Java;
+package Project.src.main.java.com.testcode;
 
 // Probability Calculator Algorithm
 // Marcus King
@@ -28,7 +28,7 @@ public class ProbabilityCalculator
     private double cellProbabilityArray[][] = new double[10][10];
 
     // keep track of number of guesses for probability calculations later
-    private int numGuesses = 0, numHits = 0, numSunk = 0, numMisses = 0;
+    private int numHits = 0, numSunk = 0, numMisses = 0;
     private int totalProbabilityScore = 0;
 
     public ProbabilityCalculator() // call this on program start
@@ -59,7 +59,6 @@ public class ProbabilityCalculator
     // and type of ship sunk (none, destroyer, cruiser, sub, battleship, carrier)
     public int calculate(Boolean hit, int x, int y, shipSunk typeSunk)
     {
-        numGuesses++;
 
         // Update game state from new info
         if(hit == false) // guess was a miss
@@ -205,7 +204,7 @@ public class ProbabilityCalculator
 
         for (int y = 0; y < 10; y++) // rows
         {
-            for(x = 0; x < 10; x++) // columns
+            for(int x = 0; x < 10; x++) // columns
             {
                 if(statusArray[y][x] == cellStatus.blank || statusArray[y][x] == cellStatus.hit)
                 {
