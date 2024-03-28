@@ -5,9 +5,9 @@ package com.testcode;
 public enum shipSunk 
 {
     none,
-    destroyer,
     cruiser,
     sub,
+    destroyer,
     battleship,
     carrier
 }
