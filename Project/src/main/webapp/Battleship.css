@@ -1,23 +1,28 @@
 body{
-    background: url("/img/battleshipBackround.jpeg");
+    background: url("img/battleshipBackround.jpeg");
 }
 
 .header{
     text-align: center;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 2px;
+    font-size: 30px;
 }
 
 .wrapper {
     margin: auto auto auto auto;
     display: grid;
-
     color: white;
     text-decoration: solid;
-    width: 75%;
-    height: 50%;
+    width: 100%;
+    max-width: 750px;
+    position: relative;
+    grid-gap: 4px;
     grid-template-columns: repeat(11, 1fr);
 }
-.grid {
-    display: flex;
+
+.grid, .side, .top {
+    display: inline-block;
     align-items: center;
     padding: 5%;
     border-bottom:2px solid white;
@@ -25,27 +30,24 @@ body{
     border-left:2px solid white ;
     border-right:2px solid white ;
     text-align: center;
-    width: 88%;
+    justify-content: center;
+    width: 55px;
     height: 55px;
+    position: relative;
 }
 
-.top {
-    padding: 10px;
-    text-align: center;
-    color: white;
-    margin-bottom: -10px;
-}
-
-.side {
-    padding: 10px;
-    text-align: center;
-    color: white;
-    margin-right: -100px;
-    margin-top: 14px;
+.side, .top {
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    color: black;
+    font-weight: bold;
 }
 
 .dialog, .dialog_bigger {
     visibility: hidden;
+    opacity: 0;
     width: 180px;
     height: 225px;
     top: 50%;
