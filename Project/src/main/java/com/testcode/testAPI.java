@@ -23,7 +23,9 @@ public class testAPI extends HttpServlet {
       int y = Integer.parseInt(request.getParameter("y"));
       int ship = Integer.parseInt(request.getParameter("shipType"));
 
-      int calculate = Calculator.calculate(hit, x, y, shipSunk.values()[ship]);
+      if (x >= 0 && y >= 0) {
+         int calculate = Calculator.calculate(hit, x, y, shipSunk.values()[ship]);
+      }
       JSONArray mJSONArray = new JSONArray(Arrays.asList(Calculator.getProbabilityArray()));
 
       response.setContentType("text/html");

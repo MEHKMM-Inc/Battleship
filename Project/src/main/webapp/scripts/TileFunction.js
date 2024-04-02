@@ -14,8 +14,14 @@ var currentSquare = null
 
 $(document).ready(function(){
 
-    // An array of the buttons used when "hit and sunk" is clicked
-    var sunkButtons = document.getElementsByClassName("sunk_button");
+    // Dictionary containing the ships and a identification value 
+    var shipTypes = {
+        "Cruiser":1,
+        "Submarine":2,
+        "Destroyer":3,
+        "Battleship":4,
+        "Aircraft Carrier":5,
+    };
     // An array of the HTMl elements within the class "grid"
     var gridElements = document.getElementsByClassName("grid");
 
@@ -28,21 +34,24 @@ $(document).ready(function(){
         for (let i = 0; i < cellProbabilities.length; i++) {
             for (let j = 0; j < cellProbabilities.length; j++) {
                 // Creates a textnode with the current cellProbabilities value
-                var textnode = document.createTextNode(cellProbabilities[i][j] + "%");
+                var textnode = document.createTextNode(Math.round((cellProbabilities[i][j] + Number.EPSILON) * 100) + "%");
 
                 var gridElement = gridElements[j + (i*10)];
                 
                 // If there is already a child, change its value
                 // Otherwise attach the textnode to the grid element
                 if (gridElement.firstChild) {
-                    gridElement.firstChild.nodeValue = (textnode.nodeValue);
-                } else {
+                    if (gridElement.classList.contains("grid")) {
+                        gridElement.firstChild.nodeValue = (textnode.nodeValue);
+                    } else {
+                        gridElement.firstChild.nodeValue = "";
+                    }
+                } else if (gridElement.classList.contains("grid")) {
                     gridElement.appendChild(textnode);
                 }
             }
         }
     }
-
     /**
      * Calculates the X and Y coordinates of the given element
      * @param {HTMLElement} element An HTML element within the class "grid"
@@ -69,6 +78,41 @@ $(document).ready(function(){
         y = (index - (x * 10));
         return [x, y];
     }
+
+    /**
+     * Fades an HTML element out
+     * @param {HTMLElement} element An HTML element that will be faded out 
+     */
+    function fade(element) {
+        var opacity = 1;
+        var timer = setInterval(function () {
+            if (opacity <= 0.1) {
+                clearInterval(timer);
+                $(element).css("visibility", "hidden");
+            }
+            $(element).css("opacity", opacity); 
+            $(element).css("filter", "alpha(opacity=" + opacity * 100 + ")");
+            opacity -= opacity * 0.1;
+        }, 5);
+    }
+
+    /**
+     * Fades an HTMl element in
+     * @param {HTMLElement} element An HTML element that will be faded in
+     */
+    function fadeIn(element) {
+        var opacity = 0.1;
+        $(element).css("visibility", "visible");
+        var timer = setInterval(function () {
+            if (opacity >= 1) {
+                clearInterval(timer);
+            }
+            $(element).css("opacity", opacity); 
+            $(element).css("filter", "alpha(opacity=" + opacity * 100 + ")");
+            opacity += opacity * 0.1;
+        }, 5);
+    }
+
     /**
      * Handles the event of a miss action
      * Default button actions are disabled to prevent page refresh
@@ -77,10 +121,11 @@ $(document).ready(function(){
     $("#miss_submit").click(function(button){
         button.preventDefault()
         var [x, y] = getCoordinates(currentSquare);
+        var select = document.getElementById("select");
         $(currentSquare).css("background-color", "red");
         $(currentSquare).off("click");
         $(currentSquare).off("mouseover");
-        $(currentSquare).off("mouseleave");
+        $(currentSquare).off("mouseleave");        
         $.ajax({
             url : "./api",
             // Data sent to the server: left is variable name and right is value
@@ -95,16 +140,14 @@ $(document).ready(function(){
             // On success, update the front end
             success : function(response) {
                 var cellProbabilities = JSON.parse(response)
-                var select = document.getElementById("select");
-                setPercentage(cellProbabilities);
-                $(select).css("visibility", "hidden");
-                
+                setPercentage(cellProbabilities);                
             },
             // On error, alert the user
             error: function() {
                 alert("error");
             }
         });
+        fade(select);
     });
     /**
      * Handles the event of a hit action
@@ -114,6 +157,7 @@ $(document).ready(function(){
     $("#hit_submit").click(function(button){
         button.preventDefault();
         var [x, y] = getCoordinates(currentSquare);
+        var select = document.getElementById("select");
         $(currentSquare).css("background-color", "green");
         $(currentSquare).off("click");
         $(currentSquare).off("mouseover");
@@ -132,15 +176,14 @@ $(document).ready(function(){
             // On success, update the front end
             success : function(response) {
                 var cellProbabilities = JSON.parse(response)
-                var select = document.getElementById("select");
                 setPercentage(cellProbabilities);
-                $(select).css("visibility", "hidden");
             },
             // On error, alert the user
             error: function() {
                 alert("error");
             }
         });
+        fade(select);
     });
     /**
      * Handles the event of a hit and sunk action
@@ -151,7 +194,9 @@ $(document).ready(function(){
         button.preventDefault();
         var select = document.getElementById("select");
         var shipSunk = document.getElementById("shipType");
+        $(select).css("opacity", 0);
         $(select).css("visibility", "hidden");
+        $(shipSunk).css("opacity", 1);
         $(shipSunk).css("visibility", "visible");
     });
 
@@ -160,10 +205,11 @@ $(document).ready(function(){
      * Offset by 1 in the data sent due to 0 resulting in a failed sunk event in the previous buttons
      * Default button actions are disabled to prevent page refresh
      */
-    for (var i = 0; i < (sunkButtons.length); i++) {
-        $(sunkButtons[i]).click(function(button) {
+    document.querySelectorAll(".sunk_button").forEach((element) => {
+        $(element).click(function(button) {
             button.preventDefault();
             var [x, y] = getCoordinates(currentSquare);
+            var shipSunk = document.getElementById("shipType");
             $(currentSquare).css("background-color", "green");
             $(currentSquare).off("click");
             $(currentSquare).off("mouseover");
@@ -176,21 +222,20 @@ $(document).ready(function(){
                     hit: "true",
                     x: x,
                     y: y,
-                    shipType: (i + 1)
+                    shipType: shipTypes[element.textContent]
                 },
                 type : "get",
                 success : function(response) {
                     var cellProbabilities = JSON.parse(response)
-                    var shipSunk = document.getElementById("shipType");
                     setPercentage(cellProbabilities);
-                    $(shipSunk).css("visibility", "hidden");
                 },
                 error: function() {
                     alert("error");
                 }
             });
+            fade(shipSunk);
         });
-    }
+    });
     
     /**
      * When the "selection" cancel option is selected, hides the dialog box
@@ -198,7 +243,7 @@ $(document).ready(function(){
     $("#cancel_submit").click(function(button){
         button.preventDefault();
         var select = document.getElementById("select");
-        $(select).css("visibility", "hidden");
+        fade(select);
     });
     /**
      * When the "hit and sunk" cancel option is selected, hides the dialog box
@@ -206,7 +251,7 @@ $(document).ready(function(){
     $("#cancel_sunk_submit").click(function(button){
         button.preventDefault();
         var shipSunk = document.getElementById("shipType");
-        $(shipSunk).css("visibility", "hidden");
+        fade(shipSunk);
     });
     /**
      * For every element in the class "grid", this attaches an "on click" event
@@ -217,8 +262,33 @@ $(document).ready(function(){
         var select = document.getElementById("select");
         var header = document.getElementById("select_header");
         $(header).html(this.id);
-        $(select).css("visibility", "visible");
+        fadeIn(select);
         currentSquare = document.getElementById(this.id);
+    });
+
+    /**
+     * Do a default call to the server to get initial values
+     */
+    $.ajax({
+        url : "./api",
+        // Data sent to the server: left is variable name and right is value
+        data : {
+            hit: "false",
+            x: -1,
+            y: -1,
+            shipType: 0
+        },
+        // "get" because we are receiving data from the server
+        type : "get",
+        // On success, update the front end
+        success : function(response) {
+            var cellProbabilities = JSON.parse(response)
+            setPercentage(cellProbabilities);
+        },
+        // On error, alert the user
+        error: function() {
+            alert("error");
+        }
     });
 
     /**
