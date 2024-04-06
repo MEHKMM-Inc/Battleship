@@ -122,7 +122,7 @@ $(document).ready(function(){
         button.preventDefault()
         var [x, y] = getCoordinates(currentSquare);
         var select = document.getElementById("select");
-        $(currentSquare).css("background-color", "red");
+        $(currentSquare).css("background-color", "white");
         $(currentSquare).off("click");
         $(currentSquare).off("mouseover");
         $(currentSquare).off("mouseleave");        
@@ -158,7 +158,7 @@ $(document).ready(function(){
         button.preventDefault();
         var [x, y] = getCoordinates(currentSquare);
         var select = document.getElementById("select");
-        $(currentSquare).css("background-color", "green");
+        $(currentSquare).css("background-color", "red");
         $(currentSquare).off("click");
         $(currentSquare).off("mouseover");
         $(currentSquare).off("mouseleave");
@@ -210,7 +210,7 @@ $(document).ready(function(){
             button.preventDefault();
             var [x, y] = getCoordinates(currentSquare);
             var shipSunk = document.getElementById("shipType");
-            $(currentSquare).css("background-color", "green");
+            $(currentSquare).css("background-color", "red");
             $(currentSquare).off("click");
             $(currentSquare).off("mouseover");
             $(currentSquare).off("mouseleave");
