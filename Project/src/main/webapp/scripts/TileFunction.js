@@ -40,13 +40,13 @@ $(document).ready(function(){
                 
                 // If there is already a child, change its value
                 // Otherwise attach the textnode to the grid element
-                if (gridElement.firstChild) {
-                    if (gridElement.classList.contains("grid")) {
-                        gridElement.firstChild.nodeValue = (textnode.nodeValue);
-                    } else {
+                if (gridElement.hasChildNodes()) {
+                    if (gridElement.classList.contains("miss") || gridElement.classList.contains("hit")) {
                         gridElement.firstChild.nodeValue = "";
+                    } else {
+                        gridElement.firstChild.nodeValue = (textnode.nodeValue);
                     }
-                } else if (gridElement.classList.contains("grid")) {
+                } else {
                     gridElement.appendChild(textnode);
                 }
             }
@@ -125,7 +125,8 @@ $(document).ready(function(){
         $(currentSquare).css("background-color", "white");
         $(currentSquare).off("click");
         $(currentSquare).off("mouseover");
-        $(currentSquare).off("mouseleave");        
+        $(currentSquare).off("mouseleave"); 
+        currentSquare.classList.add("miss");
         $.ajax({
             url : "./api",
             // Data sent to the server: left is variable name and right is value
@@ -162,6 +163,7 @@ $(document).ready(function(){
         $(currentSquare).off("click");
         $(currentSquare).off("mouseover");
         $(currentSquare).off("mouseleave");
+        currentSquare.classList.add("hit");
         $.ajax({
             url : "./api",
             // Data sent to the server: left is variable name and right is value
@@ -214,6 +216,7 @@ $(document).ready(function(){
             $(currentSquare).off("click");
             $(currentSquare).off("mouseover");
             $(currentSquare).off("mouseleave");
+            currentSquare.classList.add("hit");
             $.ajax({
                 url : "./api",
                 // shipType is sending "i" to the server because the buttons are displayed
