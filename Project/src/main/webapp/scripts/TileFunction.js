@@ -22,8 +22,87 @@ $(document).ready(function(){
         "Battleship":4,
         "Aircraft Carrier":5,
     };
+
+    // Dictionary containing ships by size
+    var shipSizes = {
+        "Destroyer":2,
+        "Cruiser":3,
+        "Submarine":3,
+        "Battleship":4,
+        "Aircraft Carrier":5,
+    }
+
+    // Dicotionary containing which ships have been sunk
+    var hasSunken = {
+        "Cruiser":false,
+        "Submarine":false,
+        "Destroyer":false,
+        "Battleship":false,
+        "Aircraft Carrier":false,
+    }
     // An array of the HTMl elements within the class "grid"
     var gridElements = document.getElementsByClassName("grid");
+
+    // A 2D array containing the grid elements by board layout
+    var boardLayout = [];
+    for (let i = 0; i < 10; i++) {
+        boardLayout.push([]);
+    }
+    for (let i = 0; i < (gridElements.length / 10); i++) {
+        for (let j = 0; j < (gridElements.length / 10); j++) {
+            boardLayout[i].push(gridElements[j + (i*10)]);
+        }
+    }
+    /**
+     * Takes an integer index value and returns all adjacent squares within the grid.
+     * @param {Integer} index The location of the square on the grid
+     * @returns All adjacent squares based on the grid element at index
+     */
+    function getAdjacent(index) {
+        let surrounding = [];
+        const column = boardLayout.length
+        const row = boardLayout[0].length
+
+        const leftEdge = index % column === 0;
+        const rightEdge = (index + 1) % column === 0;
+        const topEdge = Math.floor(index / column) === 0;
+        const bottomEdge = Math.floor(index / column) === (row - 1);
+
+        // Check edge cases
+        if (!leftEdge) {
+            surrounding.push(index - 1);
+        }
+        if (!rightEdge) {
+            surrounding.push(index + 1);
+        }
+        if (!topEdge) {
+            surrounding.push(index - column);
+        }
+        if (!bottomEdge) {
+            surrounding.push(index + column);
+        }
+
+        return surrounding;
+    }
+
+    /**
+     * Returns the index of a element within the battleship grid
+     * @param {HTMLElement} element An element to locate within the grid
+     * @returns The index of the element in the grid
+     */
+    function getIndex(element) {
+        // Index is the location in the grid of the element
+        var index = 0;
+        for (var i = 0; i < gridElements.length; i++) {
+            // If it's found, break the loop as that is the location
+            if (gridElements[i] != element) {
+                index++;
+            } else {
+                return index;
+            }
+        }
+        return index;
+    }
 
     /**
      * Sets the textnode values within the grid elements to the percentages held by cellProbabilities
@@ -57,16 +136,7 @@ $(document).ready(function(){
      * @param {HTMLElement} element An HTML element within the class "grid"
      */
     function getCoordinates(element) {
-        // Index is the location in the grid of the element
-        var index = 0;
-        for (var i = 0; i < gridElements.length; i++) {
-            // If it's found, break the loop as that is the location
-            if (gridElements[i] != element) {
-                index++;
-            } else {
-                break;
-            }
-        }
+        var index = getIndex(element);
         // Set Y to 0 and X to either the x-axis or 0
         var x, y = 0;
         if (index >= 10) {
@@ -77,6 +147,86 @@ $(document).ready(function(){
         }
         y = (index - (x * 10));
         return [x, y];
+    }
+
+    /**
+     * Calculates if there is a next ship that has been hit
+     * If there is, continues until either conditions cannot be met or until ship is sunk is valid
+     * @param {Integer} shipSize The size of the ship
+     * @param {Integer} offset The location of the next grid element
+     * @param {Integer} x The X coordinate of the current element
+     * @param {Integer} y The Y coordinate of the current element
+     * @returns The decremented ship size
+     */
+    function findNextSquare(shipSize, offset, x, y) {
+        // If y is 0, move along the x axis
+        if (y == 0) {
+            if (offset + x > 100 || offset - x < 0) {
+                return;
+            }
+        // Otherwise move along the y axis
+        } else {
+            if (offset + y > 100 || offset - y < 0) {
+                return;
+            }
+        }
+        var overflow = Math.floor(offset / boardLayout[0].length) * boardLayout[0].length;
+        var rowOverflow = overflow + boardLayout[0].length;
+        // If ship size is greater than 1 and grid element is within bound, continue to find new squares
+        if (shipSize > 1) {
+            if (offset + x > overflow && offset + x <= rowOverflow) {
+                if (gridElements[offset + x + y].classList.contains("hit")) {
+                    shipSize--;
+                    findNextSquare(shipSize, (offset + x + y), x, y);
+                }
+            }
+        }
+        return shipSize;
+    }
+
+    /**
+     * Determines if a ship can be sunk based on the current hit squares
+     * @param {Integer} shipSize The size of the ship
+     * @param {String} shipType The name of the ship  
+     * @param {HTMLElement} current The current selected HTML element
+     */
+    function canSink(shipSize, shipType, current) {
+        var index = getIndex(current);
+        var surrounding = getAdjacent(index);
+
+        // If the ship is already sunken, cannot be again
+        if (hasSunken[shipType]) {
+            return;
+        }
+        // Check each adjacent square
+        for (let i = 0; i < surrounding.length; i++) {
+            var gridElement = gridElements[surrounding[i]];
+            // If the square has been hit check the rest the other squares
+            if (gridElement.classList.contains("hit")) {
+                var offset = (getIndex(gridElement) - index);
+                // If offset is great than or less than 1, must be on y axis
+                if (offset > 1 || offset < -1) {
+                    shipSize = findNextSquare(shipSize, index, 0, offset);
+                    if (shipSize > 1) {
+                        shipSize = findNextSquare(shipSize, index, 0, offset);
+                    }
+                    // If the offset is only 1 or -1, must be on x axis
+                } else if (offset == 1 || offset == -1) {
+                    shipSize = findNextSquare(shipSize, index, offset, 0);
+                    if (shipSize > 1) {
+                        shipSize = findNextSquare(shipSize, index, offset, 0);
+                    }
+                }
+                // If the ship size is reduced to 1, it is sunken
+                // It is left at 1 because it accounts for the original square that hit and sunk was activated on
+                if (shipSize = 1) {
+                    hasSunken[shipType] = true;
+                    alert("Ship Sunk: " + shipType);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -125,7 +275,7 @@ $(document).ready(function(){
         $(currentSquare).css("background-color", "white");
         $(currentSquare).off("click");
         $(currentSquare).off("mouseover");
-        $(currentSquare).off("mouseleave"); 
+        $(currentSquare).off("mouseleave");
         currentSquare.classList.add("miss");
         $.ajax({
             url : "./api",
@@ -212,30 +362,39 @@ $(document).ready(function(){
             button.preventDefault();
             var [x, y] = getCoordinates(currentSquare);
             var shipSunk = document.getElementById("shipType");
-            $(currentSquare).css("background-color", "red");
-            $(currentSquare).off("click");
-            $(currentSquare).off("mouseover");
-            $(currentSquare).off("mouseleave");
-            currentSquare.classList.add("hit");
-            $.ajax({
-                url : "./api",
-                // shipType is sending "i" to the server because the buttons are displayed
-                // in the same order as the java enum class is written
-                data : {
-                    hit: "true",
-                    x: x,
-                    y: y,
-                    shipType: shipTypes[element.textContent]
-                },
-                type : "get",
-                success : function(response) {
-                    var cellProbabilities = JSON.parse(response)
-                    setPercentage(cellProbabilities);
-                },
-                error: function() {
-                    alert("error");
+
+            if (canSink(shipSizes[element.textContent], element.textContent, currentSquare)) {
+                $(currentSquare).css("background-color", "red");
+                $(currentSquare).off("click");
+                $(currentSquare).off("mouseover");
+                $(currentSquare).off("mouseleave");
+                currentSquare.classList.add("hit");
+                $.ajax({
+                    url : "./api",
+                    // shipType is sending "i" to the server because the buttons are displayed
+                    // in the same order as the java enum class is written
+                    data : {
+                        hit: "true",
+                        x: x,
+                        y: y,
+                        shipType: shipTypes[element.textContent]
+                    },
+                    type : "get",
+                    success : function(response) {
+                        var cellProbabilities = JSON.parse(response)
+                        setPercentage(cellProbabilities);
+                    },
+                    error: function() {
+                        alert("error");
+                    }
+                });
+            } else {
+                if (hasSunken[element.textContent]) {
+                    alert("You have already sunken this ship!");
+                } else {
+                    alert("failed");
                 }
-            });
+            }
             fade(shipSunk);
         });
     });
